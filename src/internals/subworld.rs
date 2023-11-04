@@ -315,7 +315,7 @@ mod tests {
     #[test]
     fn split_write_permissions() {
         let mut world = World::default();
-        let entity = world.push((1usize, false));
+        let entity = world.spawn((1usize, false));
 
         let (mut left, mut right) = world.split::<Write<usize>>();
 
@@ -350,7 +350,7 @@ mod tests {
     #[test]
     fn split_read_permissions() {
         let mut world = World::default();
-        let entity = world.push((1usize, false));
+        let entity = world.spawn((1usize, false));
 
         let (mut left, mut right) = world.split::<Read<usize>>();
 
@@ -389,7 +389,7 @@ mod tests {
         struct C;
 
         let mut world = World::default();
-        let entity = world.push((A, B, C));
+        let entity = world.spawn((A, B, C));
 
         let (mut left, mut right) = world.split::<(Read<A>, Write<B>)>();
 

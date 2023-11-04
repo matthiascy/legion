@@ -1107,7 +1107,7 @@ mod test {
     fn query() {
         let mut world = World::default();
         world.extend(vec![(1usize, true), (2usize, true), (3usize, false)]);
-        let entity = world.push((10usize, 5f32, false));
+        let entity = world.spawn((10usize, 5f32, false));
 
         let mut query = <(Read<usize>, Write<bool>)>::query();
         for (x, y) in query.iter_mut(&mut world) {
@@ -1143,8 +1143,8 @@ mod test {
         struct C;
 
         let mut world = World::default();
-        world.push((A, B));
-        world.push((A, C));
+        world.spawn((A, B));
+        world.spawn((A, C));
 
         let mut query_a = <(&A, &B)>::query();
         let mut query_b = <(&A, &mut C)>::query();
@@ -1260,8 +1260,8 @@ mod test {
         for _ in 0..1000 {
             let mut w = World::default();
 
-            w.push((1usize,));
-            w.push((2usize, 3.5f32));
+            w.spawn((1usize,));
+            w.spawn((2usize, 3.5f32));
 
             let count = AtomicUsize::new(0);
             <&usize>::query().par_for_each(&w, |_: &usize| {
@@ -1279,10 +1279,10 @@ mod test {
         for _ in 0..1 {
             let mut w = World::default();
 
-            w.push((2usize, 3.5f32));
-            w.push((1usize,));
-            w.push((3usize,));
-            w.push((4usize, 6.12f32));
+            w.spawn((2usize, 3.5f32));
+            w.spawn((1usize,));
+            w.spawn((3usize,));
+            w.spawn((4usize, 6.12f32));
 
             <(Entity, &usize, Option<&f32>)>::query()
                 .par_for_each(&w, |(e, x, y)| println!("{:?} {} {:?}", e, x, y));

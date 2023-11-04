@@ -41,7 +41,7 @@ fn create_entities(
         .chunks(num_components);
 
     for initializers in (&components).into_iter().take(count) {
-        let entity = world.push((A(0.0),));
+        let entity = world.spawn((A(0.0),));
         for i in initializers {
             let init = variants.get_mut(i).unwrap();
             init(entity, world);

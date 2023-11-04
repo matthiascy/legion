@@ -468,9 +468,9 @@ mod tests {
         let mut world = World::default();
         let mut resources = Resources::default();
 
-        world.push((Ball, Transform));
-        world.push((Paddle, Transform));
-        world.push((Paddle, Transform));
+        world.spawn((Ball, Transform));
+        world.spawn((Paddle, Transform));
+        world.spawn((Paddle, Transform));
 
         let system = SystemBuilder::new("PaddleSystem")
             .with_query(<(&mut Ball, &Transform)>::query())

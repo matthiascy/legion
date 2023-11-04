@@ -53,8 +53,8 @@ fn query_read_entity_data() {
 #[test]
 fn query_try_read_entity_data() {
     let mut world = World::default();
-    world.push((Pos(1., 2., 3.),));
-    world.push((Pos(4., 5., 6.), Rot(0.4, 0.5, 0.6)));
+    world.spawn((Pos(1., 2., 3.),));
+    world.spawn((Pos(4., 5., 6.), Rot(0.4, 0.5, 0.6)));
 
     let mut query = TryRead::<Rot>::query();
     let rots = query
@@ -71,8 +71,8 @@ fn query_try_read_entity_data() {
 #[test]
 fn query_try_write_entity_data() {
     let mut world = World::default();
-    world.push((Pos(1., 2., 3.),));
-    let entity = world.push((Pos(4., 5., 6.), Rot(0.4, 0.5, 0.6)));
+    world.spawn((Pos(1., 2., 3.),));
+    let entity = world.spawn((Pos(4., 5., 6.), Rot(0.4, 0.5, 0.6)));
 
     let mut query = TryWrite::<Rot>::query();
     for x in query.iter_mut(&mut world).flatten() {
@@ -435,10 +435,10 @@ fn query_try_with_changed_filter() {
 
     let mut world = World::default();
 
-    let sum_entity = world.push((Sum(0.),));
-    let a_entity = world.push((Sum(0.), A(1.)));
-    let b_entity = world.push((Sum(0.), B(2.)));
-    let a_b_entity = world.push((Sum(0.), A(1.), B(2.)));
+    let sum_entity = world.spawn((Sum(0.),));
+    let a_entity = world.spawn((Sum(0.), A(1.)));
+    let b_entity = world.spawn((Sum(0.), B(2.)));
+    let a_b_entity = world.spawn((Sum(0.), A(1.), B(2.)));
 
     let mut query = <(Write<Sum>, TryRead<A>, TryRead<B>)>::query()
         .filter((maybe_changed::<A>() | maybe_changed::<B>()) | !any());

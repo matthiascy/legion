@@ -14,7 +14,7 @@
 //! let world = World::default();
 //! ```
 //!
-//! Entities can be inserted via either [`World::push`] (for a single entity) or [`World::extend`] (for a collection
+//! Entities can be inserted via either [`World::spawn`] (for a single entity) or [`World::extend`] (for a collection
 //! of entities with the same component types). The world will create a unique ID for each entity upon insertion
 //! that you can use to refer to that entity later.
 //!
@@ -35,7 +35,7 @@
 //! }
 //!
 //! // push a component tuple into the world to create an entity
-//! let entity: Entity = world.push((Position { x: 0.0, y: 0.0 }, Velocity { dx: 0.0, dy: 0.0 }));
+//! let entity: Entity = world.spawn((Position { x: 0.0, y: 0.0 }, Velocity { dx: 0.0, dy: 0.0 }));
 //!
 //! // or extend via an IntoIterator of tuples to add many at once (this is faster)
 //! let entities: &[Entity] = world.extend(vec![
@@ -51,7 +51,7 @@
 //! ```
 //! # use legion::*;
 //! # let mut world = World::default();
-//! # let entity = world.push((false,));
+//! # let entity = world.spawn((false,));
 //! // entries return `None` if the entity does not exist
 //! if let Some(mut entry) = world.entry(entity) {
 //!     // access information about the entity's archetype

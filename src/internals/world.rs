@@ -185,20 +185,20 @@ impl World {
     ///
     /// # Examples
     ///
-    /// Pushing an entity with three components:
+    /// Spawning an entity with three components:
     /// ```
     /// # use legion::*;
     /// let mut world = World::default();
-    /// let _entity = world.push((1usize, false, 5.3f32));
+    /// let _entity = world.spawn((1usize, false, 5.3f32));
     /// ```
     ///
-    /// Pushing an entity with one component (note the tuple syntax):
+    /// Spawning an entity with one component (note the tuple syntax):
     /// ```
     /// # use legion::*;
     /// let mut world = World::default();
-    /// let _entity = world.push((1usize,));
+    /// let _entity = world.spawn((1usize,));
     /// ```
-    pub fn push<T>(&mut self, components: T) -> Entity
+    pub fn spawn<T>(&mut self, components: T) -> Entity
     where
         Option<T>: IntoComponentSource,
     {
@@ -383,7 +383,7 @@ impl World {
     /// ```
     /// # use legion::*;
     /// let mut world = World::default();
-    /// let entity = world.push((true, 0isize));
+    /// let entity = world.spawn((true, 0isize));
     /// if let Some(mut entry) = world.entry(entity) {
     ///     entry.add_component(0.2f32);
     /// }
@@ -1478,8 +1478,8 @@ mod test {
         let mut a = World::default();
         let mut b = World::default();
 
-        let entity_1 = a.push((Pos(1., 2., 3.), Rot(0.1, 0.2, 0.3)));
-        let entity_2 = a.push((Pos(4., 5., 6.), Rot(0.4, 0.5, 0.6), entity_1));
+        let entity_1 = a.spawn((Pos(1., 2., 3.), Rot(0.1, 0.2, 0.3)));
+        let entity_2 = a.spawn((Pos(4., 5., 6.), Rot(0.4, 0.5, 0.6), entity_1));
         a.entry(entity_1).unwrap().add_component(entity_2);
 
         b.extend(vec![

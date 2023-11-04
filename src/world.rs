@@ -33,7 +33,7 @@
 //! }
 //!
 //! // push a component tuple into the world to create an entity
-//! let entity: Entity = world.push((Position { x: 0.0, y: 0.0 }, Velocity { dx: 0.0, dy: 0.0 }));
+//! let entity: Entity = world.spawn((Position { x: 0.0, y: 0.0 }, Velocity { dx: 0.0, dy: 0.0 }));
 //!
 //! // or extend via an IntoIterator of tuples to add many at once
 //! // this is faster than individual pushes
@@ -70,7 +70,7 @@
 //! ```
 //! # use legion::*;
 //! # let mut world = World::default();
-//! # let entity = world.push((false, 1usize));
+//! # let entity = world.spawn((false, 1usize));
 //! // entries return `None` if the entity does not exist
 //! if let Some(mut entry) = world.entry(entity) {
 //!     // add an extra component
@@ -93,7 +93,7 @@
 //! ```
 //! # use legion::*;
 //! # let mut world = World::default();
-//! # let entity = world.push((false, 12f32));
+//! # let entity = world.spawn((false, 12f32));
 //! // entries return `None` if the entity does not exist
 //! if let Some(mut entry) = world.entry(entity) {
 //!     // access information about the entity's archetype
@@ -135,7 +135,7 @@
 //! # struct B;
 //! # struct C;
 //! let mut world = World::default();
-//! let entity = world.push((A, B, C));
+//! let entity = world.spawn((A, B, C));
 //! let (mut left, mut right) = world.split::<(Read<A>, Write<B>)>();
 //!
 //! // left only has permission to read A and read/write B.

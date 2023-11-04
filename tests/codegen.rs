@@ -49,7 +49,7 @@ fn query_get() {
     }
 
     let mut world = World::default();
-    let entity = world.push(());
+    let entity = world.spawn(());
 
     let mut schedule = Schedule::builder().add_system(sys_system(entity)).build();
 

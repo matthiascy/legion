@@ -57,7 +57,7 @@ fn hasher() {
         let type_id = TypeId::of::<T>();
         type_id.hash(&mut hasher);
         assert_eq!(hasher.finish(), unsafe {
-            core::mem::transmute::<TypeId, u64>(type_id)
+            core::mem::transmute::<TypeId, u128>(type_id) as u64
         });
     }
 

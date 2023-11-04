@@ -80,7 +80,7 @@ scoped_thread_local! {
 /// # let mut world = World::default();
 /// # #[derive(serde::Serialize, serde::Deserialize)]
 /// # struct ContainsEntity(Entity);
-/// # let contains_entity = ContainsEntity(world.push(()));
+/// # let contains_entity = ContainsEntity(world.spawn(()));
 ///
 /// let entity_serializer = Canon::default();
 /// set_entity_serializer(&entity_serializer, || {
